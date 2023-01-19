@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-env": "^1.7.0"
+  },
+  "scripts": {
+    "build": "babel src -d dist"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
