@@ -42,7 +42,7 @@ export default class LinkedList {
                 this.head = current.next;
             } else {
                 let previous = this.getElementAt(index - 1);
-                current = previous.current;
+                current = previous.next;
                 previous.next = current.next;
             }
             this.count--;
