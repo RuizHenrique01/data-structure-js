@@ -1,4 +1,4 @@
-import Queue from "./queue";
+import Queue from "../queue/queue";
 
 export default function hotPotato(elementsList, num){
     const queue = new Queue();
