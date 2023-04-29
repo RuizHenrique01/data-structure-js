@@ -1,7 +1,8 @@
 import { defaultToString } from "../utils/defaultToString";
 import { ValuePair } from "../models/value-pair-model";
+import { LinkedList } from "../linkedList/linkedList"
 
-export class HashTable{
+export class HashTableSeparateChaining{
     constructor(toStrFn = defaultToString) {
         this.toStrFn = toStrFn;
         this.table = {};
@@ -26,23 +27,45 @@ export class HashTable{
     put(key, value){
         if(key != null && value != null){
             const position = this.hashCode(key);
-            this.table[position] = new ValuePair(key, value);
+            if(this.table[position] == null){
+                this.table[position] = new LinkedList();
+            }
+            this.table[position].push(new ValuePair(key, value));
             return true;
         }
         return false;
     }
 
     get(key){
-        const valuePair = this.table[this.hashCode(key)];
-        return valuePair == null ? undefined : valuePair.value;
+        const position = this.hashCode(key);
+        const linkedList = this.table[position];
+        if(linkedList != null && !linkedList.isEmpty()){
+            let current = linkedList.getHead();
+            while (current != null){
+                if(current.element.key === key){
+                    return current.element.value;
+                }
+                current = current.next;
+            }
+        }
+        return undefined;
     }
 
     remove(key){
-        const hash = this.hashCode(key);
-        const valuePair = this.table[hash];
-        if(valuePair != null){
-            delete this.table[hash];
-            return true;
+        const position = this.hashCode(key);
+        const linkedList = this.table[position];
+        if(linkedList != null && !linkedList.isEmpty()){
+            let current = linkedList.getHead();
+            while (current != null){
+                if(current.element.key === key){
+                    linkedList.remove(current.element);
+                    if(linkedList.isEmpty()){
+                        delete this.table[position];
+                    }
+                    return true;
+                }
+                current = current.next;
+            }
         }
         return false;
     }
