@@ -2,6 +2,7 @@ import BinarySearchTree from "../data-structures/binarySearchTree/binarySearchTr
 
 const tree = new BinarySearchTree();
 tree.insert(11);
+tree.insert(7);
 tree.insert(15);
 tree.insert(5);
 tree.insert(3);
@@ -15,3 +16,14 @@ tree.insert(20);
 tree.insert(18);
 tree.insert(25);
 tree.insert(6);
+
+const printNode = (value) => console.log(value);
+
+console.log("=== In Order! ===");
+tree.inOrderTraverse(printNode);
+
+console.log("=== Pre Order! ===");
+tree.preOrderTraverse(printNode);
+
+console.log("=== Pos Order! ===");
+tree.posOrderTraverse(printNode);

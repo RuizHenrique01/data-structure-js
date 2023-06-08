@@ -31,4 +31,40 @@ export default class BinarySearchTree {
             }
         }
     }
+
+    inOrderTraverse(callback) {
+        this.inOrderTraverseNode(this.root, callback);
+    }
+
+    inOrderTraverseNode(node, callback) {
+        if(node != null) {
+            this.inOrderTraverseNode(node.left, callback);
+            callback(node.key);
+            this.inOrderTraverseNode(node.right, callback);
+        }
+    }
+
+    preOrderTraverse(callback){
+        this.preOrderTraverseNode(this.root, callback);
+    }
+
+    preOrderTraverseNode(node, callback){
+        if(node != null) {
+            callback(node.key);
+            this.preOrderTraverseNode(node.left, callback);
+            this.preOrderTraverseNode(node.right, callback);
+        }
+    }
+
+    posOrderTraverse(callback) {
+        this.posOrderTraverseNode(this.root, callback);
+    }
+
+    posOrderTraverseNode(node, callback){
+        if(node != null){
+            this.posOrderTraverseNode(node.left, callback);
+            this.posOrderTraverseNode(node.right, callback);
+            callback(node.key);
+        }
+    }
 }
