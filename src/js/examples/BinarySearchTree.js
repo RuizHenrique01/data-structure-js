@@ -27,3 +27,7 @@ tree.preOrderTraverse(printNode);
 
 console.log("=== Pos Order! ===");
 tree.posOrderTraverse(printNode);
+
+console.log("=== Search! ===");
+console.log(tree.search(1) ? "Key 1 found." : "key 1 not found.");
+console.log(tree.search(8) ? "Key 8 found." : "key 8 not found.");
