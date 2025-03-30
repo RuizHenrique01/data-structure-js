@@ -1,4 +1,4 @@
-import { Graph } from "../data-structures/graph/graph";
+import { Graph, breadthFirstSearch } from "../data-structures/graph/graph";
 
 const graph = new Graph();
 const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
@@ -18,3 +18,6 @@ graph.addEdge('B', 'F');
 graph.addEdge('E', 'I');
 
 console.log(graph.toString());
+
+const printVertex = (value) => console.log('Visited vertex: ' + value);
+breadthFirstSearch(graph, myVertices[0], printVertex);
