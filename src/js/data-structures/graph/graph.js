@@ -39,6 +39,39 @@ export const breadthFirstSearch = (graph, startVertex, callback) => {
     }
 }
 
+export const BFS = (graph, startVertex) => {
+    const vertices = graph.getVertices();
+    const adjList = graph.getAdjList();
+    const color = initializeColor(vertices);
+    const queue = new Queue();
+    const distance = {};
+    const predecessor = {};
+    queue.enqueue(startVertex);
+    for(let i = 0; i < vertices.length; i++){
+        distance[vertices[i]] = 0;
+        predecessor[vertices[i]] = null;
+    }
+    while(!queue.isEmpty()){
+        const u = queue.dequeue();
+        const neighbors = adjList.get(u);
+        color[u] = Colors.GREY;
+        for(let i = 0; i< neighbors.length; i++){
+            const w = neighbors[i];
+            if(color[w] === Colors.WHITE){
+                color[w] = Colors.GREY;
+                distance[w] = distance[u] + 1;
+                predecessor[w] = u;
+                queue.enqueue(w);
+            }
+        }
+        color[u] = Colors.BLACK;
+    }
+    return {
+        distance,
+        predecessor
+    };
+}
+
 export class Graph {
     constructor(isDirected = false){
         this.isDirected = isDirected;
